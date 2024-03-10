@@ -13,7 +13,7 @@ import java.util.Optional;
 public class Startup implements CommandLineRunner {
 
     @Autowired
-    private RoleRepository roleRepository;
+    public RoleRepository roleRepository;
 
     @Override
     public void run(String... args) throws Exception {

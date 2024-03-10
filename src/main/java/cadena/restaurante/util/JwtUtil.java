@@ -14,9 +14,9 @@ import java.util.Date;
 public class JwtUtil {
 
     @Value("${app.jwtSecret}")
-    private String jwtSecret;
+    public String jwtSecret;
     @Value("${app.jwtExpirationMs}")
-    private int jwtExpirationMs;
+    public int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication){
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();

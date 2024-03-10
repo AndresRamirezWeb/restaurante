@@ -27,15 +27,15 @@ import java.util.stream.Collectors;
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Autowired
-    private UserRepository userRepository;
+    public UserRepository userRepository;
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    public PasswordEncoder passwordEncoder;
     @Autowired
-    private RoleRepository roleRepository;
+    public RoleRepository roleRepository;
     @Autowired
-    private AuthenticationManager authenticationManager;
+    public AuthenticationManager authenticationManager;
     @Autowired
-    private JwtUtil jwtUtil;
+    public JwtUtil jwtUtil;
 
     @Override
     public JwtReponseDTO login(@RequestBody LoginDTO loginDTO) {
