@@ -59,6 +59,27 @@ ___
     "password": "secret"
 }
 ```
+Se usa el token de la respuesta y el type:
+
+```
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZXNyYW1pcmV6NTQ1OUBnbWFpbC5jb20iLCJpYXQiOjE3MTAxMDgxMTEsImV4cCI6MTcxMDEwOTkxMX0.UI2UTDsEYCaZ1u32nzLvPAChI-KdKj4U2f1EC-ZjMJfzysoG8zOT12aB6a1FQMnTDjDA7HxlN42cOI0lxTZgdg",
+    "type": "Bearer",
+    "id": 1,
+    "firstName": "Andres",
+    "lastName": "Ramirez",
+    "roles": [
+        "ROLE_ADMIN"
+    ]
+}
+```
+En la cabecera de la peticion se le pasa el token y el type de la siguiente manera:
+
+```
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZXNyYW1pcmV6NTQ1OUBnbWFpbC5jb20iLCJpYXQiOjE3MTAxMDgxMTEsImV4cCI6MTcxMDEwOTkxMX0.UI2UTDsEYCaZ1u32nzLvPAChI-KdKj4U2f1EC-ZjMJfzysoG8zOT12aB6a1FQMnTDjDA7HxlN42cOI0lxTZgdg
+
+```
+Esto se hace a la hora se consumir los endpoint a continuacion...
 ___
 - **/mesas**: CRUD para mesas.
 - **/clientes**: CRUD para clientes.
