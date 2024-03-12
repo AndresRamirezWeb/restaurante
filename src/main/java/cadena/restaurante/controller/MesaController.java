@@ -34,6 +34,7 @@ public class MesaController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Mesa> createMesa(@RequestBody Mesa mesa) {
         Mesa createdMesa = mesaService.createMesa(mesa);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdMesa);
