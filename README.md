@@ -52,13 +52,16 @@ ___
 }
 ```
 ___
-- **/login**: Iniciar sesión y obtener token JWT.
+- **/openapi/v1/login**: Iniciar sesión y obtener token JWT.
 ```
 {
     "email": "andresramirez5459@gmail.com",
     "password": "secret"
 }
+
+
 ```
+---
 Se usa el token de la respuesta y el type:
 
 ```
@@ -79,9 +82,36 @@ En la cabecera de la peticion se le pasa el token y el type de la siguiente mane
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZXNyYW1pcmV6NTQ1OUBnbWFpbC5jb20iLCJpYXQiOjE3MTAxMDgxMTEsImV4cCI6MTcxMDEwOTkxMX0.UI2UTDsEYCaZ1u32nzLvPAChI-KdKj4U2f1EC-ZjMJfzysoG8zOT12aB6a1FQMnTDjDA7HxlN42cOI0lxTZgdg
 
 ```
+---
 Esto se hace a la hora se consumir los endpoint a continuacion...
-___
-- **/mesas**: CRUD para mesas.
+
+### **CRUD para mesas**
+- **Todas las mesas:** /api/v1/mesas
+- **Obtener una mesa:** /api/v1/mesas/{id}
+---
+- **Crear mesas:** /api/v1/mesas
+
+Sele pasa el siguiente body:
+```
+{
+    "maxComensales": 10,
+    "ubicacion": "Sala"
+}
+```
+---
+- **Actualizar mesas:** /api/v1/mesas/{id}
+
+Sele pasa el siguiente body:
+```
+{
+    "maxComensales": 10,
+    "ubicacion": "Sala"
+}
+```
+---
+- **Borrar mesa:** /api/v1/mesas/{id}
+
+---
 - **/clientes**: CRUD para clientes.
 - **/camareros**: CRUD para camareros.
 - **/platos**: CRUD para platos.
