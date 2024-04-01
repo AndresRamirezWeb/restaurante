@@ -1,7 +1,6 @@
 package cadena.restaurante.service;
 
 import cadena.restaurante.model.Cliente;
-
 import cadena.restaurante.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
