@@ -1,5 +1,7 @@
 package cadena.restaurante.controller;
 
+import cadena.restaurante.model.Camarero;
+import cadena.restaurante.model.Cliente;
 import cadena.restaurante.model.Factura;
 import cadena.restaurante.service.FacturaService;
 import lombok.extern.log4j.Log4j2;
@@ -50,6 +52,20 @@ public class FacturaController {
     public ResponseEntity<Void> deleteFactura(@PathVariable Long id) {
         facturaService.deleteFactura(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/camareros")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<Camarero>> getTotalFacturadoPorCamareroPorMes() {
+        List<Camarero> camarerosTotales = facturaService.getTotalFacturadoPorCamareroPorMes();
+        return ResponseEntity.ok().body(camarerosTotales);
+    }
+
+    @GetMapping("/clientes")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<Cliente>> getClientesConMasDeCienMilPesosGastados() {
+        List<Cliente> clientes = facturaService.getClientesConMasDeCienMilPesosGastados();
+        return ResponseEntity.ok().body(clientes);
     }
 
 }
