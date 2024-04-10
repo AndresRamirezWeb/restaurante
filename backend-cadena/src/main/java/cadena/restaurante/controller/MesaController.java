@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/mesas")
 @Log4j2
+@CrossOrigin(value ="http://localhost:4200")
 public class MesaController {
 
     @Autowired

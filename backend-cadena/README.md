@@ -39,6 +39,15 @@ Password DB: cocina_cadena
 
 ## Endpoints API
 ___
+### **JWT**
+API authentication con Spring Security y JWT
+
+#### Objetivo
+
+- Habiliar la aunteticacion en la aplicacion
+- Generar un Token JWT
+- Validar el Token recibido
+---
 - **/openapi/v1/signup**: Registrar Usuario
 - **Ejemplo:**
 ```
@@ -112,22 +121,201 @@ Sele pasa el siguiente body:
 - **Borrar mesa:** /api/v1/mesas/{id}
 
 ---
-- **/clientes**: CRUD para clientes.
-- **/camareros**: CRUD para camareros.
-- **/platos**: CRUD para platos.
-- **/facturas**: CRUD para facturas.
-- **/facturas/{id}/detalle**: Obtener detalles de una factura por su ID.
-- **/facturas/camareros**: Obtener la suma del total facturado por cada camarero por mes.
-- **/facturas/clientes**: Obtener clientes con más de cien mil pesos gastados en el restaurante.
+### **CRUD para clientes**
+- **Todas los clientes:** /api/v1/clientes
+- **Obtener un cliente:** /api/v1/clientes/{id}
+---
+- **Crear clientes:** /api/v1/clientes
 
-## JWT
-API authentication con Spring Security y JWT
+Sele pasa el siguiente body:
+```
+{
+    "nombre": "Pedro",
+    "apellido": "Zapata"
+}
+```
+---
+- **Actualizar clientes:** /api/v1/clientes/{id}
 
-### Objetivo
+Sele pasa el siguiente body:
+```
+{
+    "nombre": "Pedro",
+    "apellido": "Zapata"
+}
+```
+---
+- **Borrar cliente:** /api/v1/clientes/{id}
 
-- Habiliar la aunteticacion en la aplicacion
-- Generar un Token JWT
-- Validar el Token recibido
+---
+
+### **CRUD para camareros**
+- **Todas los camareros:** /api/v1/camareros
+- **Obtener un camarero:** /api/v1/camareros/{id}
+---
+- **Crear camareros:** /api/v1/camareros
+
+Sele pasa el siguiente body:
+```
+{
+    "nombre": "Esteban",
+    "apellido": "Perez"
+}
+```
+---
+- **Actualizar camareros:** /api/v1/camareros/{id}
+
+Sele pasa el siguiente body:
+```
+{
+    "nombre": "Esteban",
+    "apellido": "Perez"
+}
+```
+---
+- **Borrar camarero:** /api/v1/camareros/{id}
+
+---
+
+### **CRUD para platos**
+- **Todas los platos:** /api/v1/platos
+- **Obtener un plato:** /api/v1/platos/{id}
+---
+- **Crear platos:** /api/v1/platos
+
+Sele pasa el siguiente body:
+```
+{
+    "nombre": "Salchipapas",
+    "precio": 17000
+}
+```
+---
+- **Actualizar platos:** /api/v1/platos/{id}
+
+Sele pasa el siguiente body:
+```
+{
+    "nombre": "Salchipapas",
+    "precio": 17000
+}
+```
+---
+- **Borrar plato:** /api/v1/platos/{id}
+
+---
+
+### **CRUD para facturas**
+- **Todas las facturas:** /api/v1/facturas
+- **Obtener una factura:** /api/v1/facturas/{id}
+---
+- **Crear facturas:** /api/v1/facturas
+
+Sele pasa el siguiente body:
+```
+{
+    "fecha": "2024-03-19T00:00:00",
+    "totalFacturado": 39000.00,
+    "mesa": {
+        "id": 1,
+        "maxComensales": 4,
+        "ubicacion": "Ventana"
+    },
+    "cliente": {
+        "id": 1,
+        "nombre": "Juan",
+        "apellido": "Pérez"
+    },
+    "camarero": {
+        "id": 1,
+        "nombre": "Pedro",
+        "apellido": "López"
+    }
+}
+```
+---
+- **Actualizar facturas:** /api/v1/facturas/{id}
+
+Sele pasa el siguiente body:
+```
+{
+    "fecha": "2024-03-19T00:00:00",
+    "totalFacturado": 80000.00,
+    "mesa": {
+        "id": 1,
+        "maxComensales": 4,
+        "ubicacion": "Ventana"
+    },
+    "cliente": {
+        "id": 1,
+        "nombre": "Juan",
+        "apellido": "Pérez"
+    },
+    "camarero": {
+        "id": 1,
+        "nombre": "Pedro",
+        "apellido": "López"
+    }
+}
+```
+---
+- **Borrar factura:** /api/v1/facturas/{id}
+
+---
+
+###  **Obtener suma total facturado por cada camarero por mes**
+- **/facturas/camareros**
+
+### **Obtener clientes con más de cien mil pesos gastados en el restaurante**
+- **/facturas/clientes**
+
+### **CRUD para Detalles**
+- **Todas los detalles:** /api/v1/detalles
+- **Obtener un detalle:** /api/v1/detalles/{id}
+---
+- **Crear detalles:** /api/v1/detalles
+
+Sele pasa el siguiente body:
+```
+{
+    "cantidad": 7,
+    "totalDetalle": 70000.00,
+    "factura": {
+        "id": 2
+    },
+    "plato": {
+        "id": 1
+    }
+}
+```
+---
+- **Actualizar detalles:** /api/v1/detalles/{id}
+
+Sele pasa el siguiente body:
+```
+{
+    "cantidad": 8,
+    "totalDetalle": 80000.00,
+    "factura": {
+        "id": 2,
+        "fecha": null,
+        "totalFacturado": null,
+        "mesa": null,
+        "cliente": null,
+        "camarero": null
+    },
+    "plato": {
+        "id": 1,
+        "nombre": null,
+        "precio": null
+    }
+}
+```
+---
+- **Borrar detalle:** /api/v1/detalles/{id}
+---
+
+
 
 
 
