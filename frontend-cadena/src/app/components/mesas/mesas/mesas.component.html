@@ -1,1 +1,33 @@
-<p>mesas works!</p>
+<div class="container mx-auto py-8">
+    <h2 class="text-2xl font-bold mb-4">Mesas</h2>
+    <div class="mb-4">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="openModal()">
+            Agregar Mesa
+        </button>
+    </div>
+    <table class="table-auto w-full">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">Número</th>
+                <th class="px-4 py-2">Capacidad</th>
+                <th class="px-4 py-2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mesa of mesas">
+                <td class="px-4 py-2">{{ mesa.numero }}</td>
+                <td class="px-4 py-2">{{ mesa.capacidad }}</td>
+                <td class="px-4 py-2">
+                    <!-- <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        (click)="editarMesa(mesa)">
+                        Editar
+                    </button> -->
+                    <!-- <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+                        (click)="eliminarMesa(mesa.id)">
+                        Eliminar
+                    </button> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

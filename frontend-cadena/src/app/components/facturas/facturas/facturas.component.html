@@ -1,1 +1,92 @@
-<p>facturas works!</p>
+<div class="container mx-auto py-8">
+    <h2 class="text-2xl font-bold mb-4">Registro de Factura</h2>
+    <form (ngSubmit)="registrarFactura()" [formGroup]="facturaForm">
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="cliente">
+                Cliente
+            </label>
+            <select
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="cliente" formControlName="cliente">
+                <option *ngFor="let cliente of clientes" [value]="cliente.id">
+                    {{ cliente.nombre }} {{ cliente.apellido }}
+                </option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="camarero">
+                Camarero
+            </label>
+            <select
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="camarero" formControlName="camarero">
+                <option *ngFor="let camarero of camareros" [value]="camarero.id">
+                    {{ camarero.nombre }} {{ camarero.apellido }}
+                </option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="platos">
+                Platos
+            </label>
+            <table class="table-auto w-full">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">Plato</th>
+                        <th class="px-4 py-2">Cantidad</th>
+                        <th class="px-4 py-2">Precio</th>
+                        <th class="px-4 py-2">Total</th>
+                        <th class="px-4 py-2"></th>
+                    </tr>
+                </thead>
+                <tbody formArrayName="platos">
+                    <tr *ngFor="let platoControl of platos.controls; let i = index" [formGroupName]="i">
+                        <td class="px-4 py-2">
+                            <select
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                formControlName="plato">
+                                <option *ngFor="let plato of platos" [value]="plato.id">
+                                    {{ plato.nombre }}
+                                </option>
+                            </select>
+                        </td>
+                        <td class="px-4 py-2">
+                            <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                type="number" formControlName="cantidad" />
+                        </td>
+                        <td class="px-4 py-2">{{ calcularTotal(i) }}</td>
+                        <td class="px-4 py-2">
+                            <button type="button"
+                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                                (click)="removerPlato(i)">
+                                Remover
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mb-4">
+            <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                (click)="agregarPlato()">
+                Agregar Plato
+            </button>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="total">
+                Total
+            </label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="total" type="text" [value]="totalFactura" disabled />
+        </div>
+        <div class="flex items-center justify-between">
+            <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit" [disabled]="facturaForm.invalid">
+                Registrar Factura
+            </button>
+        </div>
+    </form>
+</div>

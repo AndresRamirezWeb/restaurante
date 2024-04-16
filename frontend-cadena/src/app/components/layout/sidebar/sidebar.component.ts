@@ -1,29 +1,36 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import {
+  RouterOutlet,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
+
 // import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-sidebar',
-  // standalone: true,
-  // imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './sidebar.component.html',
 })
 export class SidebarComponent {
   menuItems = [
-    { label: 'Registro de Factura', route: '/factura' },
+    { label: 'Registro de Factura', route: '/facturas' },
     { label: 'Mesas', route: '/mesas' },
     { label: 'Clientes', route: '/clientes' },
     { label: 'Camareros', route: '/camareros' },
     { label: 'Platos', route: '/platos' },
-    { label: 'Facturas', route: '/facturas' },
     { label: 'Detalles', route: '/detalles' },
-    { label: 'Reportes', route: '/reportes' }
+    { label: 'Reportes', route: '/reportes' },
   ];
 
   // constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router) {}
 
   logout() {
     // this.authService.logout();
-    // this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }

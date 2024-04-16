@@ -1,1 +1,35 @@
-<p>clientes works!</p>
+<div class="container mx-auto py-8">
+    <h2 class="text-2xl font-bold mb-4">Clientes</h2>
+    <div class="mb-4">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="openModal()">
+            Agregar Cliente
+        </button>
+    </div>
+    <table class="table-auto w-full">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">Nombre</th>
+                <th class="px-4 py-2">Apellido</th>
+                <th class="px -4 py-2">Correo Electrónico</th>
+                <th class="px-4 py-2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes">
+                <td class="px-4 py-2">{{ cliente.nombre }}</td>
+                <td class="px-4 py-2">{{ cliente.apellido }}</td>
+                <td class="px-4 py-2">{{ cliente.email }}</td>
+                <td class="px-4 py-2">
+                    <!-- <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        (click)="editarCliente(cliente)">
+                        Editar
+                    </button>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+                        (click)="eliminarCliente(cliente.id)">
+                        Eliminar
+                    </button> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

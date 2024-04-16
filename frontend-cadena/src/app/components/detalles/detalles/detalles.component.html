@@ -1,1 +1,37 @@
-<p>detalles works!</p>
+<div class="container mx-auto py-8">
+    <h2 class="text-2xl font-bold mb-4">Detalles</h2>
+    <div class="flex justify-between mb-4">
+        <div>
+            <label class="block text-gray-700 font-bold mb-2" for="factura">
+                Factura
+            </label>
+            <!-- <select
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="factura" [(ngModel)]="facturaSeleccionada">
+                <option *ngFor="let factura of facturas" [value]="factura.id">
+                    {{ factura.id }}
+                </option>
+            </select> -->
+        </div>
+    </div>
+    <table class="table-auto w-full">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">Plato</th>
+                <th class="px-4 py-2">Cantidad</th>
+                <th class="px-4 py-2">Precio Unitario</th>
+                <th class="px-4 py-2">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let detalle of detalles">
+                <td class="px-4 py-2">{{ detalle.plato.nombre }}</td>
+                <td class="px-4 py-2">{{ detalle.cantidad }}</td>
+                <td class="px-4 py-2">{{ detalle.plato.precio }}</td>
+                <td class="px-4 py-2">
+                    {{ detalle.cantidad * detalle.plato.precio }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

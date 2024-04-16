@@ -1,24 +1,29 @@
 <div class="flex h-screen">
-    <aside class="bg-gray-800 w-64 py-8 px-4">
+    <aside class="bg-green-600 w-64 py-8 px-4">
         <h1 class="text-white font-bold text-lg mb-4">Cocina con Cadena</h1>
         <nav>
             <ul class="space-y-2">
                 <li *ngFor="let item of menuItems">
-                    <!-- <a [routerLink]="item.route" class="block py-2 px-4 rounded-md text-white hover:bg-gray-700"
+                    <a [routerLink]="['/menu'+item.route]"
+                        class="block py-2 px-4 rounded-md text-white hover:bg-gray-700"
                         [routerLinkActive]="'bg-gray-700'">
                         {{ item.label }}
-                    </a> -->
+                    </a>
                 </li>
                 <li>
-                    <!-- <a (click)="logout()"
+                    <a (click)="logout()"
                         class="block py-2 px-4 rounded-md text-white hover:bg-gray-700 cursor-pointer">
                         Cerrar Sesión
-                    </a> -->
+                    </a>
                 </li>
             </ul>
         </nav>
     </aside>
     <main class="flex-grow p-8">
-        <!-- <router-outlet></router-outlet> -->
+        <router-outlet></router-outlet>
     </main>
 </div>
+<footer class="bg-green-600 py-4 text-center text-white">
+    &copy; {{ 2024 }} Cocina con Cadena
+    <!-- &copy; {{ currentYear }} Cocina con Cadena -->
+</footer>
