@@ -1,6 +1,7 @@
 <div class="container mx-auto py-8">
     <h2 class="text-2xl font-bold mb-4">Registro de Factura</h2>
-    <form (ngSubmit)="registrarFactura()" [formGroup]="facturaForm">
+    <form>
+        <!-- <form (ngSubmit)="registrarFactura()" [formGroup]="facturaForm"> -->
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2" for="cliente">
                 Cliente
@@ -8,8 +9,9 @@
             <select
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="cliente" formControlName="cliente">
-                <option *ngFor="let cliente of clientes" [value]="cliente.id">
-                    {{ cliente.nombre }} {{ cliente.apellido }}
+                <!-- <option *ngFor="let cliente of clientes" [value]="cliente.id"> -->
+                <option>
+                    <!-- {{ cliente.nombre }} {{ cliente.apellido }} -->
                 </option>
             </select>
         </div>
@@ -20,8 +22,9 @@
             <select
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="camarero" formControlName="camarero">
-                <option *ngFor="let camarero of camareros" [value]="camarero.id">
-                    {{ camarero.nombre }} {{ camarero.apellido }}
+                <!-- <option *ngFor="let camarero of camareros" [value]="camarero.id"> -->
+                <option>
+                    <!-- {{ camarero.nombre }} {{ camarero.apellido }} -->
                 </option>
             </select>
         </div>
@@ -40,7 +43,8 @@
                     </tr>
                 </thead>
                 <tbody formArrayName="platos">
-                    <tr *ngFor="let platoControl of platos.controls; let i = index" [formGroupName]="i">
+                    <tr>
+                        <!-- <tr *ngFor="let platoControl of platos.controls; let i = index" [formGroupName]="i"> -->
                         <td class="px-4 py-2">
                             <select
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -55,23 +59,31 @@
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 type="number" formControlName="cantidad" />
                         </td>
-                        <td class="px-4 py-2">{{ calcularTotal(i) }}</td>
+                        <td class="px-4 py-2"></td>
+                        <!-- <td class="px-4 py-2">{{ calcularTotal(i) }}</td> -->
                         <td class="px-4 py-2">
                             <button type="button"
+                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                Remover
+                            </button>
+                            <!-- <button type="button"
                                 class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                                 (click)="removerPlato(i)">
                                 Remover
-                            </button>
+                            </button> -->
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="mb-4">
-            <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                (click)="agregarPlato()">
+            <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Agregar Plato
             </button>
+            <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                (click)="agregarPlato()">
+                Agregar Plato
+            </button> -->
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2" for="total">
