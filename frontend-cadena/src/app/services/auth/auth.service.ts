@@ -24,13 +24,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<string> {
     const datos = { email, password };
-
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<string>(
-      `${this.apiUrl}/login`,
-      JSON.stringify(datos),
-      { headers },
-    );
+    return this.http.post<string>(`${this.apiUrl}/login`, datos);
   }
 
   logout() {
