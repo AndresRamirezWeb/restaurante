@@ -10,74 +10,128 @@
             Ingrese sus datos de registro
         </h3>
         <br>
-        <form action="">
+        <form [formGroup]="registerForm">
 
             <div class="flex flex-wrap -mx-3 mb-6">
 
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label for="first_name" class="block mt-4 mb-2 text-left text-gray-700 font-bold">Nombre:</label>
-                    <input type="text" id="first_name" name="first_name" placeholder="Ingrese su Nombre" class="block w-full mb-6 px-4 py-2 border
-                -gray-300 rounded-md focus:outline-none
+
+                    <label for="nombre" class="block mt-4 mb-2 text-left text-gray-700 font-bold">Nombre:</label>
+
+                    <div *ngIf="registerForm.hasError('required', 'nombre') && registerForm.controls['nombre'].dirty"
+                        class="text-red-500 text-sm">
+                        El nombre es requerido
+                    </div>
+                    <!-- <div *ngIf="registerForm.hasError('nombre', 'nombre')" class="text-red-500 text-sm">El
+                        nombre es invalido
+                    </div> -->
+                    <input formControlName="nombre" type="text" id="nombre" name="nombre"
+                        placeholder="Ingrese su Nombre" class="block w-full mb-6 px-4 py-2 border border-gray-300 rounded-md focus:outline-none
                  focus:border-green-400" required>
                 </div>
 
                 <div class="w-full md:w-1/2 px-3">
-                    <label for="last_name" class="block mb-2 text-left
-             text-gray-700 font-bold">Apellido:</label>
-                    <input type="text" id="last_name" name="last_name" placeholder="Ingrese su Apellido" class="block w-full mb-6 px-4 py-2 border 
-                border-gray-300 rounded-md focus:outline-none
+                    <label for="apellido" class="block mt-4 mb-2 text-left text-gray-700 font-bold">Apellido:</label>
+                    <div *ngIf="registerForm.hasError('required', 'apellido') && registerForm.controls['apellido'].dirty"
+                        class="text-red-500 text-sm">
+                        El apellido es requerido
+                    </div>
+                    <!-- <div *ngIf="registerForm.hasError('last_name', 'last_name')" class="text-red-500 text-sm">El
+                        apellido es invalido
+                    </div> -->
+                    <input formControlName="apellido" type="text" id="apellido" name="apellido"
+                        placeholder="Ingrese su Apellido" class="block w-full mb-6 px-4 py-2 border border-gray-300 rounded-md focus:outline-none
                  focus:border-green-400" required>
                 </div>
 
             </div>
 
             <div class="flex flex-wrap -mx-3 mb-6">
+
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label for="email" class="block mb-2 text-left text-gray-700 font-bold">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Ingrese su Email"
+                    <div *ngIf="registerForm.hasError('required', 'email') && registerForm.controls['email'].dirty"
+                        class="text-red-500 text-sm">
+                        El email es requerido
+                    </div>
+                    <div *ngIf="registerForm.hasError('email', 'email')" class="text-red-500 text-sm">El
+                        email es invalido
+                    </div>
+                    <input formControlName="email" type="email" id="email" name="email" placeholder="Ingrese su Email"
                         class="block w-full mb-6 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-400"
                         required>
                 </div>
 
                 <div class="w-full md:w-1/2 px-3">
-                    <label for="role" class="block mb-2 text-left
-             text-gray-700 font-bold">Role:</label>
-                    <input type="text" id="role" name="role" placeholder="Ingrese su role" class="block w-full mb-6 px-4 py-2 border 
+                    <label for="role" class="block mb-2 text-left text-gray-700 font-bold">Role:</label>
+                    <div *ngIf="registerForm.hasError('required', 'role') && registerForm.controls['role'].dirty"
+                        class="text-red-500 text-sm">
+                        El role es requerido
+                    </div>
+                    <!-- <div *ngIf="registerForm.hasError('role', 'role')" class="text-red-500 text-sm">
+                        El role es invalido
+                    </div> -->
+                    <select formControlName="role" id="role" name="role" class="block w-full mb-6 px-4 py-2 border 
                 border-gray-300 rounded-md focus:outline-none
                  focus:border-green-400" required>
+                        <option value="">Seleccionar Role</option>
+                        <option value="ADMIN">Admin</option>
+                        <option value="MOD">Moderator</option>
+                        <option value="USER">User</option>
+                    </select>
                 </div>
-            </div>
 
+            </div>
 
             <label for="phone" class="block mb-2 text-left
              text-gray-700 font-bold">Teléfono:</label>
-            <input type="text" id="phone" name="phone" placeholder="Ingrese su Teléfono" class="block w-full mb-6 px-4 py-2 border 
+            <div *ngIf="registerForm.hasError('required', 'phone') && registerForm.controls['phone'].dirty"
+                class="text-red-500 text-sm">
+                El teléfono es requerido
+            </div>
+            <!-- <div *ngIf="registerForm.hasError('phone', 'phone')" class="text-red-500 text-sm">
+                El teléfono es invalido
+            </div> -->
+            <input formControlName="phone" type="tel" id="phone" name="phone" placeholder="Ingrese su Teléfono" class="block w-full mb-6 px-4 py-2 border 
                 border-gray-300 rounded-md focus:outline-none
                  focus:border-green-400" required>
 
             <label for="password" class="block mb-2 text-left
              text-gray-700 font-bold">Contraseña:</label>
-            <input type="password" id="password" name="password" placeholder="Ingrese su Contraseña" class="block w-full mb-6 px-4 py-2 border 
+            <div *ngIf="registerForm.hasError('required', 'password') && registerForm.controls['password'].dirty"
+                class="text-red-500 text-sm">
+                El password es requerido
+            </div>
+            <div *ngIf="registerForm.hasError('password', 'password')" class="text-red-500 text-sm">
+                El password es invalido
+            </div>
+            <input formControlName="password" type="password" id="password" name="password"
+                placeholder="Ingrese su Contraseña" class="block w-full mb-6 px-4 py-2 border 
                 border-gray-300 rounded-md focus:outline-none
                  focus:border-green-400" required>
 
             <label for="confirmPassword" class="block mb-2 text-left
              text-gray-700 font-bold">Confirme Contraseña:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme su Contraseña"
-                class="block w-full mb-6 px-4 py-2 border 
+            <div *ngIf="registerForm.hasError('required', 'confirmPassword') && registerForm.controls['confirmPassword'].dirty"
+                class="text-red-500 text-sm">
+                El password es requerido
+            </div>
+            <!-- <div *ngIf="registerForm.hasError('confirmPassword', 'confirmPassword')" class="text-red-500 text-sm">
+                El password es invalido </div> -->
+            <input formControlName="confirmPassword" type="password" id="confirmPassword" name="confirmPassword"
+                placeholder="Confirme su Contraseña" class="block w-full mb-6 px-4 py-2 border 
                 border-gray-300 rounded-md focus:outline-none
                  focus:border-green-400" required>
 
             <div class="flex justify-center items-center">
-                <button type="submit" class="bg-green-600 text-white py-3 px-6 rounded
-                    -md cursor-pointer transition-colors 
+                <button [disabled]="registerForm.invalid" (click)="registrar()" class="bg-green-600 text-white py-3 px-6 rounded-md cursor-pointer transition-colors 
                     duration-300 hover:bg-green-500">
                     Registrar
                 </button>
             </div>
         </form>
         <p class="mt-4">¿Ya registrado?
-            <a href="/" class="text-blue-500 
+            <a routerLink="/" class="text-blue-500 
             hover:underline">Acceder</a>
         </p>
     </div>

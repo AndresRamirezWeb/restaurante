@@ -9,11 +9,13 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
   standalone: true,
   imports: [RouterModule, ReactiveFormsModule, NgIf],
+  templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -36,7 +38,12 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(email, password).subscribe(
       (res: any) => {
-        alert('Login exitoso!');
+        Swal.fire({
+          title: '¡Inicio de sesión exitoso!',
+          text: 'Ha iniciado sesión correctamente.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
         localStorage.setItem('token', res.token);
         this.router.navigate(['/menu']);
         this.loginForm.reset();
@@ -44,8 +51,12 @@ export class LoginComponent implements OnInit {
       (error) => {
         console.error('Error al iniciar sesión:', error.message);
         // Mostrar mensaje de error al usuario
-        alert('Error al iniciar sesión. Intente nuevamente.');
-        this.loginForm.setErrors({ loginError: 'Credenciales incorrectas' });
+        Swal.fire({
+          title: '¡Inicio de sesión fallido!',
+          text: 'Las credenciales ingresadas son incorrectas. Inténtalo de nuevo.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
       },
     );
   }

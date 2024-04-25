@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,9 +17,11 @@ export class AuthService {
     role: string,
     phone: string,
     password: string,
-  ): Observable<any> {
+  ): Observable<string> {
     const datos = { firstName, lastName, email, role, phone, password };
-    return this.http.post(`${this.apiUrl}/register`, datos);
+    return this.http.post<string>(`${this.apiUrl}/signup`, datos, {
+      responseType: 'text' as 'json',
+    });
   }
 
   login(email: string, password: string): Observable<string> {

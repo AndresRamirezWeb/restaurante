@@ -13,7 +13,7 @@ import { DetallesComponent } from './components/detalles/detalles/detalles.compo
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'signup', component: RegisterComponent },
   {
     path: 'menu',
     component: SidebarComponent,
