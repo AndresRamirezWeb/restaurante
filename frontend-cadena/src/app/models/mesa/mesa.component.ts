@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+export class Mesa {
+  id: number;
+  maxComensales: number;
+  ubicacion: string;
 
-@Component({
-  selector: 'app-mesa',
-  standalone: true,
-  imports: [],
-  templateUrl: './mesa.component.html',
-  styleUrl: './mesa.component.css'
-})
-export class MesaComponent {
-
+  constructor(id: number, maxComensales: number, ubicacion: string) {
+    this.id = id;
+    this.maxComensales = maxComensales;
+    this.ubicacion = ubicacion;
+  }
 }

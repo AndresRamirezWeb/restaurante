@@ -2,6 +2,9 @@ package cadena.restaurante.controller;
 
 import cadena.restaurante.model.Mesa;
 import cadena.restaurante.service.MesaService;
+import cadena.restaurante.util.JwtUtil;
+import cadena.restaurante.filter.AuthJwtTokenFilter;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,12 +23,31 @@ public class MesaController {
     @Autowired
     private MesaService mesaService;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private AuthJwtTokenFilter authJwtTokenFilter;
+
     @GetMapping()
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Mesa>> getAllMesas() {
         List<Mesa> mesas = mesaService.getAllMesas();
         return ResponseEntity.ok().body(mesas);
     }
+
+//    @GetMapping()
+//    @PreAuthorize("hasRole('ADMIN')")
+//    public ResponseEntity<List<Mesa>> getAllMesas(@RequestHeader("Authorization") HttpServletRequest token) {
+//        String jwtToken = authJwtTokenFilter.extractJwtToken(token);
+//
+//        if (jwtUtil.validateJwtToken(jwtToken)) {
+//            List<Mesa> mesas = mesaService.getAllMesas();
+//            return ResponseEntity.ok().body(mesas);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+//        }
+//    }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")

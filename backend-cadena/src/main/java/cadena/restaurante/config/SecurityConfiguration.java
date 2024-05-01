@@ -57,6 +57,7 @@ public class SecurityConfiguration {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests().requestMatchers("/openapi/v1/**").permitAll()
+                //.requestMatchers("/api/v1/**").permitAll()
                 .requestMatchers("/example/v1/**").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authJwtTokenFilter, UsernamePasswordAuthenticationFilter.class);

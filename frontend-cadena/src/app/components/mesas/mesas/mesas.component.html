@@ -10,22 +10,24 @@
             <tr>
                 <th class="px-4 py-2">Número</th>
                 <th class="px-4 py-2">Capacidad</th>
+                <th class="px-4 py-2">Ubicación</th>
                 <th class="px-4 py-2">Acciones</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let mesa of mesas">
-                <td class="px-4 py-2">{{ mesa.numero }}</td>
-                <td class="px-4 py-2">{{ mesa.capacidad }}</td>
-                <td class="px-4 py-2">
-                    <!-- <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        (click)="editarMesa(mesa)">
+                <td class="px-4 py-2 text-center">{{ mesa.id }}</td>
+                <td class="px-4 py-2 text-center">{{ mesa.maxComensales }}</td>
+                <td class="px-4 py-2 text-center">{{ mesa.ubicacion }}</td>
+                <td class="px-4 py-2 text-center">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        (click)="editarMesa(mesa.id)">
                         Editar
-                    </button> -->
-                    <!-- <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+                    </button>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
                         (click)="eliminarMesa(mesa.id)">
                         Eliminar
-                    </button> -->
+                    </button>
                 </td>
             </tr>
         </tbody>

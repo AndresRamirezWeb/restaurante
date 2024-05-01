@@ -50,7 +50,7 @@ public class AuthJwtTokenFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private String extractJwtToken(HttpServletRequest httpServletRequest){
+    public String extractJwtToken(HttpServletRequest httpServletRequest){
         //Bearer GmrPUV53i8YCFez4MTDMPjkRP43XWSHkXPVAWgL8S5HZgHMFmz6bhVXpDyMnpBS7pe3oqnhtFQrGW2g6Szn8jvNdYSJus2MwVTnXVrbaoX9Yt9amvqzycUtFJB25b4TN
         String header = httpServletRequest.getHeader("Authorization");
         if(StringUtils.hasText(header) && header.startsWith("Bearer ")){
