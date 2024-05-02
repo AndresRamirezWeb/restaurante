@@ -17,10 +17,18 @@ export class MesasService {
     return this.http.get<Mesa[]>(`${this.apiUrl}/mesas`, { headers });
   }
 
-  // Métodos relacionados con la gestión de la interfaz de usuario
-  openModal(): void {
-    // Lógica para abrir el modal de agregar mesa
-    console.log('Abriendo modal de agregar mesa');
+  crearMesa(
+    maxComensales: number,
+    ubicacion: string,
+    token: string,
+  ): Observable<void> {
+    // Lógica para crear la mesa
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.http.post<void>(
+      `${this.apiUrl}/mesas`,
+      { maxComensales: maxComensales || 0, ubicacion: ubicacion || '' },
+      { headers },
+    );
   }
 
   editarMesa(id: number, mesa: Mesa, token: string): Observable<void> {

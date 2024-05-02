@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Mesa } from '../../../models/mesa/mesa.component';
 import { MesasService } from '../../../services/mesas/mesas.service';
 
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
@@ -10,12 +10,15 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-mesas',
   standalone: true,
-  imports: [NgForOf, FormsModule],
+  imports: [NgForOf, FormsModule, NgIf],
   templateUrl: './mesas.component.html',
 })
 export class MesasComponent implements OnInit {
+  showModalMesa: boolean = false;
+  maxComensales: number;
+  ubicacion: string;
+
   mesas: Mesa[];
-  // mesas: Mesa[] = [];
 
   constructor(private mesasService: MesasService) {}
 
@@ -41,13 +44,41 @@ export class MesasComponent implements OnInit {
     }
   }
 
-  openModal() {
-    // Aquí puedes implementar la lógica para abrir un modal de agregar mesa
-    // Por ejemplo, si estás utilizando alguna librería de modales como ng-bootstrap,
-    // puedes activar el modal aquí utilizando su API.
-    // También puedes mostrar un componente de Angular como un modal
-    // o cambiar el estado de una variable que controle la visibilidad del modal en el HTML.
-    console.log('Abriendo modal de agregar mesa');
+  openModalMesa() {
+    this.showModalMesa = true;
+  }
+
+  cancelarMesa() {
+    this.showModalMesa = false;
+  }
+
+  guardarMesa() {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      this.mesasService
+        .crearMesa(this.maxComensales, this.ubicacion, token)
+        .subscribe(
+          () => {
+            Swal.fire({
+              title: '¡Mesa creada!',
+              text: 'La mesa se creo correctamente.',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            });
+            this.obtenerMesas(); // Volver a cargar las mesas después de eliminar
+          },
+          (error) => {
+            console.error('Error al crear la mesa:', error);
+            // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+          },
+        );
+    } else {
+      console.error('Token de autenticación no encontrado');
+      // Manejar la falta de token, tal vez redirigir a la página de inicio de sesión
+    }
+
+    this.showModalMesa = false;
   }
 
   editarMesa(mesa: Mesa) {
