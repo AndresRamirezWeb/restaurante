@@ -5,11 +5,12 @@ import { MesasService } from '../../../services/mesas/mesas.service';
 import { NgForOf } from '@angular/common';
 
 import Swal from 'sweetalert2';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mesas',
   standalone: true,
-  imports: [NgForOf],
+  imports: [NgForOf, FormsModule],
   templateUrl: './mesas.component.html',
 })
 export class MesasComponent implements OnInit {
@@ -49,10 +50,10 @@ export class MesasComponent implements OnInit {
     console.log('Abriendo modal de agregar mesa');
   }
 
-  editarMesa(id: number) {
+  editarMesa(mesa: Mesa) {
     const token = localStorage.getItem('token');
     if (token) {
-      this.mesasService.editarMesa(id, token).subscribe(
+      this.mesasService.editarMesa(mesa.id, mesa, token).subscribe(
         () => {
           Swal.fire({
             title: '¡Mesa editada!',

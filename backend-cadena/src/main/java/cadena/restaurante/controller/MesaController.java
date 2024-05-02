@@ -36,19 +36,6 @@ public class MesaController {
         return ResponseEntity.ok().body(mesas);
     }
 
-//    @GetMapping()
-//    @PreAuthorize("hasRole('ADMIN')")
-//    public ResponseEntity<List<Mesa>> getAllMesas(@RequestHeader("Authorization") HttpServletRequest token) {
-//        String jwtToken = authJwtTokenFilter.extractJwtToken(token);
-//
-//        if (jwtUtil.validateJwtToken(jwtToken)) {
-//            List<Mesa> mesas = mesaService.getAllMesas();
-//            return ResponseEntity.ok().body(mesas);
-//        } else {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
-//        }
-//    }
-
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Mesa> getMesaById(@PathVariable Long id) {
@@ -64,6 +51,7 @@ public class MesaController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Mesa> updateMesa(@PathVariable Long id, @RequestBody Mesa mesa) {
         Mesa updatedMesa = mesaService.updateMesa(id, mesa);
         return ResponseEntity.ok().body(updatedMesa);

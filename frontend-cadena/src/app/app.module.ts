@@ -25,7 +25,14 @@ import { DetallesService } from './services/detalles/detalles.service';
 import { AuthService } from './services/auth/auth.service';
 
 @NgModule({
-  declarations: [
+  declarations: [],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
     AppComponent,
     LoginComponent,
     RegisterComponent,
@@ -37,14 +44,6 @@ import { AuthService } from './services/auth/auth.service';
     PlatosComponent,
     ReportesComponent,
     DetallesComponent,
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
   ],
   providers: [
     ClientesService,

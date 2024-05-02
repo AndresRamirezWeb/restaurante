@@ -14,6 +14,7 @@ import { AuthService } from '../../../services/auth/auth.service';
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
   menuItems = [

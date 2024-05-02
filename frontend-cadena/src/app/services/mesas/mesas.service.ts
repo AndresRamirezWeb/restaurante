@@ -17,21 +17,25 @@ export class MesasService {
     return this.http.get<Mesa[]>(`${this.apiUrl}/mesas`, { headers });
   }
 
-  eliminarMesa(id: number, token: string): Observable<void> {
-    // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const headers = { Authorization: `Bearer ${token}` };
-    return this.http.delete<void>(`${this.apiUrl}/mesas/${id}`, { headers });
-  }
-
   // Métodos relacionados con la gestión de la interfaz de usuario
   openModal(): void {
     // Lógica para abrir el modal de agregar mesa
     console.log('Abriendo modal de agregar mesa');
   }
 
-  editarMesa(id: number, token: string): Observable<Mesa[]> {
+  editarMesa(id: number, mesa: Mesa, token: string): Observable<void> {
     // Lógica para editar la mesa
     const headers = { Authorization: `Bearer ${token}` };
-    return this.http.put<Mesa[]>(`${this.apiUrl}/mesas/${id}`, { headers });
+    return this.http.put<void>(
+      `${this.apiUrl}/mesas/${id}`,
+      { maxComensales: mesa.maxComensales, ubicacion: mesa.ubicacion },
+      { headers },
+    );
+  }
+
+  eliminarMesa(id: number, token: string): Observable<void> {
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.http.delete<void>(`${this.apiUrl}/mesas/${id}`, { headers });
   }
 }
