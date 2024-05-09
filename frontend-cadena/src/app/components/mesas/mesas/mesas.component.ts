@@ -6,6 +6,7 @@ import { NgForOf, NgIf } from '@angular/common';
 
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mesas',
@@ -20,7 +21,10 @@ export class MesasComponent implements OnInit {
 
   mesas: Mesa[];
 
-  constructor(private mesasService: MesasService) {}
+  constructor(
+    private mesasService: MesasService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.obtenerMesas();
@@ -35,12 +39,27 @@ export class MesasComponent implements OnInit {
         },
         (error) => {
           console.error('Error al obtener las mesas:', error);
-          // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+          Swal.fire({
+            title: '¡Error al obtener las mesas!',
+            text: error.message + '. Inténtalo de nuevo.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+
+          if (error.status === 401) {
+            this.router.navigate(['/']);
+          }
         },
       );
     } else {
       console.error('Token de autenticación no encontrado');
-      // Manejar la falta de token, tal vez redirigir a la página de inicio de sesión
+      Swal.fire({
+        title: '¡Token de autenticación no encontrado!',
+        text: 'Ocurrió un error al obtener el token. Inténtalo de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      this.router.navigate(['/']);
     }
   }
 
@@ -70,12 +89,27 @@ export class MesasComponent implements OnInit {
           },
           (error) => {
             console.error('Error al crear la mesa:', error);
-            // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+            Swal.fire({
+              title: '¡Error al crear la mesa!',
+              text: error.message + '. Inténtalo de nuevo.',
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+
+            if (error.status === 401) {
+              this.router.navigate(['/']);
+            }
           },
         );
     } else {
       console.error('Token de autenticación no encontrado');
-      // Manejar la falta de token, tal vez redirigir a la página de inicio de sesión
+      Swal.fire({
+        title: '¡Token de autenticación no encontrado!',
+        text: 'Ocurrió un error al obtener el token. Inténtalo de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      this.router.navigate(['/']);
     }
 
     this.showModalMesa = false;
@@ -96,17 +130,28 @@ export class MesasComponent implements OnInit {
         },
         (error) => {
           console.error('Error al editar la mesa:', error);
-          // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+          Swal.fire({
+            title: '¡Error al editar la mesa!',
+            text: error.message + '. Inténtalo de nuevo.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+
+          if (error.status === 401) {
+            this.router.navigate(['/']);
+          }
         },
       );
     } else {
       console.error('Token de autenticación no encontrado');
-      // Manejar la falta de token, tal vez redirigir a la página de inicio de sesión
+      Swal.fire({
+        title: '¡Token de autenticación no encontrado!',
+        text: 'Ocurrió un error al obtener el token. Inténtalo de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      this.router.navigate(['/']);
     }
-    // Aquí puedes implementar la lógica para editar la mesa seleccionada
-    // Por ejemplo, puedes navegar a una ruta que tenga un componente de edición de mesa
-    // o mostrar un modal de edición de mesa similar a openModal().
-    // console.log('Editando la mesa:', mesa);
   }
 
   eliminarMesa(id: number) {
@@ -125,12 +170,27 @@ export class MesasComponent implements OnInit {
         },
         (error) => {
           console.error('Error al eliminar la mesa:', error);
-          // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+          Swal.fire({
+            title: '¡Error al eliminar la mesa!',
+            text: error.message + '. Inténtalo de nuevo.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+
+          if (error.status === 401) {
+            this.router.navigate(['/']);
+          }
         },
       );
     } else {
       console.error('Token de autenticación no encontrado');
-      // Manejar la falta de token, tal vez redirigir a la página de inicio de sesión
+      Swal.fire({
+        title: '¡Token de autenticación no encontrado!',
+        text: 'Ocurrió un error al obtener el token. Inténtalo de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      this.router.navigate(['/']);
     }
   }
 }
