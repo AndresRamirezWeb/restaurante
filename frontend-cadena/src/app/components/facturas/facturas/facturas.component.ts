@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Cliente } from '../../../models/cliente/cliente';
-import { Camarero } from '../../../models/camarero/camarero';
-import { Plato } from '../../../models/plato/plato';
+import { Cliente } from '../../../models/cliente/cliente.component';
+import { Camarero } from '../../../models/camarero/camarero.component';
+import { Plato } from '../../../models/plato/plato.component';
 import { FacturasService } from '../../../services/facturas/facturas.service';
 
 @Component({

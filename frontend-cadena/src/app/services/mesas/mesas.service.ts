@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Mesa } from '../../models/mesa/mesa.component';
 
@@ -12,7 +12,6 @@ export class MesasService {
   constructor(private http: HttpClient) {}
 
   getMesas(token: string): Observable<Mesa[]> {
-    // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const headers = { Authorization: `Bearer ${token}` };
     return this.http.get<Mesa[]>(`${this.apiUrl}/mesas`, { headers });
   }
@@ -22,7 +21,6 @@ export class MesasService {
     ubicacion: string,
     token: string,
   ): Observable<void> {
-    // Lógica para crear la mesa
     const headers = { Authorization: `Bearer ${token}` };
     return this.http.post<void>(
       `${this.apiUrl}/mesas`,
@@ -32,7 +30,6 @@ export class MesasService {
   }
 
   editarMesa(id: number, mesa: Mesa, token: string): Observable<void> {
-    // Lógica para editar la mesa
     const headers = { Authorization: `Bearer ${token}` };
     return this.http.put<void>(
       `${this.apiUrl}/mesas/${id}`,
@@ -42,7 +39,6 @@ export class MesasService {
   }
 
   eliminarMesa(id: number, token: string): Observable<void> {
-    // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const headers = { Authorization: `Bearer ${token}` };
     return this.http.delete<void>(`${this.apiUrl}/mesas/${id}`, { headers });
   }

@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+export class Detalle {
+  id: number;
+  cantidad: number;
+  totalDetalle: number;
+  facturaId: number;
+  platoId: number;
 
-@Component({
-  selector: 'app-detalle',
-  standalone: true,
-  imports: [],
-  templateUrl: './detalle.component.html',
-  styleUrl: './detalle.component.css'
-})
-export class DetalleComponent {
-
+  constructor(
+    id: number,
+    cantidad: number,
+    totalDetalle: number,
+    facturaId: number,
+    platoId: number,
+  ) {
+    this.id = id;
+    this.cantidad = cantidad;
+    this.totalDetalle = totalDetalle;
+    this.facturaId = facturaId;
+    this.platoId = platoId;
+  }
 }
