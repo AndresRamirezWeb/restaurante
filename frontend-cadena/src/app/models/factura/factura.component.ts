@@ -1,12 +1,42 @@
-import { Component } from '@angular/core';
+export class Factura {
+  id: number;
+  mesaId: number;
+  clienteId: number;
+  camareroId: number;
+  fecha: number;
+  totalFacturado: number;
+  maxComensales: number;
+  ubicacion: string;
+  nombreCliente: string;
+  apellidoCliente: string;
+  nombreCamarero: string;
+  apellidoCamarero: string;
 
-@Component({
-  selector: 'app-factura',
-  standalone: true,
-  imports: [],
-  templateUrl: './factura.component.html',
-  styleUrl: './factura.component.css'
-})
-export class FacturaComponent {
-
+  constructor(
+    id: number,
+    mesaId: number,
+    clienteId: number,
+    camareroId: number,
+    fecha: number,
+    totalFacturado: number,
+    maxComensales: number,
+    ubicacion: string,
+    nombreCliente: string,
+    apellidoCliente: string,
+    nombreCamarero: string,
+    apellidoCamarero: string,
+  ) {
+    this.id = id;
+    this.mesaId = mesaId;
+    this.clienteId = clienteId;
+    this.camareroId = camareroId;
+    this.fecha = fecha;
+    this.totalFacturado = totalFacturado;
+    this.maxComensales = maxComensales;
+    this.ubicacion = ubicacion;
+    this.nombreCliente = nombreCliente;
+    this.apellidoCliente = apellidoCliente;
+    this.nombreCamarero = nombreCamarero;
+    this.apellidoCamarero = apellidoCamarero;
+  }
 }
