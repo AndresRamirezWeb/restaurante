@@ -11,7 +11,7 @@ export class CamarerosService {
 
   constructor(private http: HttpClient) {}
 
-  getCamarero(token: string): Observable<Camarero[]> {
+  getCamareros(token: string): Observable<Camarero[]> {
     const headers = { Authorization: `Bearer ${token}` };
     return this.http.get<Camarero[]>(`${this.apiUrl}/camareros`, { headers });
   }
