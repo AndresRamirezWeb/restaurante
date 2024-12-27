@@ -1,37 +1,104 @@
-<div class="container mx-auto py-8">
+<div class="mx-auto py-8">
     <h2 class="text-2xl font-bold mb-4">Detalles</h2>
-    <div class="flex justify-between mb-4">
-        <div>
-            <label class="block text-gray-700 font-bold mb-2" for="factura">
-                Factura
-            </label>
-            <!-- <select
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="factura" [(ngModel)]="facturaSeleccionada">
-                <option *ngFor="let factura of facturas" [value]="factura.id">
-                    {{ factura.id }}
-                </option>
-            </select> -->
-        </div>
+    <div class="mb-4">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            (click)="openModalDetalle()">
+            Agregar Detalle
+        </button>
+
     </div>
     <table class="table-auto w-full">
         <thead>
             <tr>
-                <th class="px-4 py-2">Plato</th>
-                <th class="px-4 py-2">Cantidad</th>
-                <th class="px-4 py-2">Precio Unitario</th>
-                <th class="px-4 py-2">Total</th>
+                <th class="px-2 py-4">Id Detalle</th>
+                <th class="px-2 py-4">Id Factura</th>
+                <th class="px-2 py-4">Id Plato</th>
+                <th class="px-2 py-4">Nombre Plato</th>
+                <th class="px-2 py-4">Precio Plato</th>
+                <th class="px-2 py-4">Cantidad Detalle</th>
+                <th class="px-2 py-4">Total Detalle</th>
+                <th class="px-2 py-4">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let detalle of detalles">
-                <td class="px-4 py-2">{{ detalle.plato.nombre }}</td>
-                <td class="px-4 py-2">{{ detalle.cantidad }}</td>
-                <td class="px-4 py-2">{{ detalle.plato.precio }}</td>
-                <td class="px-4 py-2">
-                    {{ detalle.cantidad * detalle.plato.precio }}
+            <tr *ngFor="let detalle of detalles; let i = index;">
+
+                <td class="px-2 py-4 text-center">{{ detalle.id }}</td>
+
+                <td class="px-2 py-4 text-center">
+                    <input type="number" [(ngModel)]="detalles[i].factura.id" class="form-input text-center">
+                </td>
+
+                <td class="px-2 py-4 text-center">
+                    <input type="number" [(ngModel)]="detalles[i].plato.id" class="form-input text-center">
+                </td>
+
+                <td class="px-2 py-4 text-center">{{ detalle.plato.nombre }}</td>
+
+                <td class="px-2 py-4 text-center">{{detalle.plato.precio}}</td>
+
+                <td class="px-2 py-4 text-center">
+                    <input type="number" [(ngModel)]="detalles[i].cantidad" class="form-input text-center">
+                </td>
+
+                <td class="px-2 py-4 text-center">
+                    <input type="number" [(ngModel)]="detalles[i].totalDetalle" class="form-input text-center">
+                </td>
+
+                <td class="px-2 py-4 text-center">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded"
+                        (click)="editarDetalle(detalle)">
+                        Editar
+                    </button>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded ml-2"
+                        (click)="eliminarDetalle(detalle.id)">
+                        Eliminar
+                    </button>
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<!-- Modal -->
+<div class="fixed z-10 inset-0 overflow-y-auto" *ngIf="showModalDetalle">
+    <div class="flex items-center justify-center min-h-screen">
+
+        <!-- Fondo oscuro -->
+        <div class="fixed inset-0 bg-black opacity-50"></div>
+
+        <div class="relative bg-white rounded-lg shadow-xl p-6 z-20">
+
+            <h2 class="text-lg font-semibold mb-4">Crear Nuevo Detalle</h2>
+            <div class="mb-4">
+                <label for="facturaId" class="block">Factura Id</label>
+                <input type="number" id="facturaId" name="facturaId" [(ngModel)]="facturaId"
+                    class="border border-gray-300 rounded px-3 py-2 w-full">
+            </div>
+
+            <div class="mb-4">
+                <label for="platoId" class="block">Plato Id</label>
+                <input type="number" id="platoId" name="platoId" [(ngModel)]="platoId"
+                    class="border border-gray-300 rounded px-3 py-2 w-full">
+            </div>
+
+            <div class="mb-4">
+                <label for="cantidad" class="block">Cantidad Detalle</label>
+                <input type="number" id="cantidad" name="cantidad" [(ngModel)]="cantidad"
+                    class="border border-gray-300 rounded px-3 py-2 w-full">
+            </div>
+
+            <div class="mb-4">
+                <label for="totalDetalle" class="block">total Detalle:</label>
+                <input type="number" id="totalDetalle" name="totalDetalle" [(ngModel)]="totalDetalle"
+                    class="border border-gray-300 rounded px-3 py-2 w-full">
+            </div>
+            <div class="flex justify-end">
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded mr-2"
+                    (click)="cancelarDetalle()">Cancelar</button>
+                <button class="px-4 py-2 bg-blue-500 text-white rounded" (click)="guardarDetalle()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
 </div>
